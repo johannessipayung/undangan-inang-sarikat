@@ -32,7 +32,6 @@ export default function Home() {
   // ==========================================
   useEffect(() => {
     const removeNextOverlay = () => {
-      // Mencari semua elemen overlay bawaan Turbopack
       const overlays = document.querySelectorAll('next-dev-overlay');
       overlays.forEach((overlay) => {
         if (overlay) {
@@ -41,12 +40,8 @@ export default function Home() {
       });
     };
 
-    // Jalankan pembersihan berkala setiap 100 milidetik secara agresif
     const interval = setInterval(removeNextOverlay, 100);
-
-    return () => {
-      clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, []);
   // ==========================================
 
@@ -100,30 +95,59 @@ export default function Home() {
     <>
       <SuccessAlert isVisible={showAlert} onClose={handleCloseAlert} />
       
-      <main className="w-full overflow-hidden bg-[#f5f1e8] relative">
-        <LeftOlosBar />
-        <RightOlosBar />
-        <UlosTopBorder />
-        <InvitationHeader />
-        <ProfileShowcase />
-        <CountdownTimer />
-        <LocationMaps />
-        <EventDetails />
-        <FamilyGroups />
+      <main className="w-full overflow-hidden bg-[#f5f1e8] relative transition-colors duration-500">
+        {/* Ornamen Tepi dengan Transisi Memudar Lembut */}
+        <div className="opacity-90 transition-opacity duration-1000">
+          <LeftOlosBar />
+          <RightOlosBar />
+          <UlosTopBorder />
+        </div>
 
-        {isLoading ? (
-          <div className="w-full text-center py-8 text-[#6b5344]">Memuat ucapan...</div>
-        ) : (
-          <MessageCarousel messages={messages} />
-        )}
+        {/* 1. Header: Muncul Pertama Kali saat Halaman Dimuat */}
+        <div className="animate-fade-in duration-1000 ease-out">
+          <InvitationHeader />
+        </div>
 
-        <MessageForm onMessageSubmit={handleMessageSubmit} onShowAlert={handleShowAlert} />
-        <SouvenirSection />
-        <InvitationFooter />
-        <UlosBottomBorder />
+        {/* 2. Profil Showcase: Efek Naik Perlahan dengan Sedikit Jeda */}
+        <div className="animate-fade-in-up [animation-duration:1200ms] delay-200">
+          <ProfileShowcase />
+        </div>
 
-        {/* Chatbot Asisten Riwayat Hidup Melayang */}
-        <ChatWidget />
+        {/* 3. Kotak Waktu & Detail Acara: Muncul Bergantian */}
+        <div className="animate-fade-in-up [animation-duration:1000ms] delay-500 flex flex-col gap-2">
+          <CountdownTimer />
+          <LocationMaps />
+          <EventDetails />
+        </div>
+
+        {/* 4. Grup Keluarga & Interaksi Tamu */}
+        <div className="transition-all duration-700 ease-in-out">
+          <FamilyGroups />
+          
+          {isLoading ? (
+            <div className="w-full text-center py-8 text-[#6b5344] animate-pulse">
+              Memuat ucapan hangat...
+            </div>
+          ) : (
+            <div className="animate-fade-in duration-500">
+              <MessageCarousel messages={messages} />
+            </div>
+          )}
+
+          <MessageForm onMessageSubmit={handleMessageSubmit} onShowAlert={handleShowAlert} />
+        </div>
+
+        {/* 5. Bagian Penutup */}
+        <div className="animate-fade-in [animation-duration:1500ms]">
+          <SouvenirSection />
+          <InvitationFooter />
+          <UlosBottomBorder />
+        </div>
+
+        {/* 6. Chatbot Melayang: Menggunakan Efek Denyut Halus agar Menarik Perhatian */}
+        <div className="fixed bottom-6 right-6 z-50 animate-bounce [animation-duration:3s] hover:scale-110 transition-transform">
+          <ChatWidget />
+        </div>
       </main>
     </>
   )

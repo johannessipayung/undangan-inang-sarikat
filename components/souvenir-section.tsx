@@ -44,29 +44,13 @@ export default function SouvenirSection() {
             <p className="text-center text-white leading-relaxed text-base md:text-lg">
               Pengambilan souvenir harap undangan<br />
               dibawa dan souvenir berlaku untuk<br />
-              satu undangan.
+              satu undangan fisik.
             </p>
 
             {/* Bottom decoration */}
             <div className="flex justify-center mt-6">
               <div className="text-[#d4a574] text-2xl">✦</div>
             </div>
-          </div>
-        </div>
-
-        {/* Additional note */}
-        <div className="text-center mt-12">
-          <div className="inline-block bg-white rounded-lg shadow-md border-2 border-[#d4a574] p-6 md:p-8 max-w-2xl">
-            <p className="text-[#6b5344] mb-4 leading-relaxed">
-              Kepada Yth.<br />
-              <span className="font-semibold text-[#8b4513]">Bapak/Ibu/Saudara/i :</span>
-            </p>
-            <p className="text-lg border-b-2 border-[#d4a574] pb-3 text-[#2d1b1a] font-semibold">
-              ..........................................
-            </p>
-            <p className="text-xs text-[#8b4513] mt-3">
-              (Mohon tuliskan nama tamu untuk kebutuhan souvenir)
-            </p>
           </div>
         </div>
       </div>
