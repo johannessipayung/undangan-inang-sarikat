@@ -43,7 +43,7 @@ export default function ProfileShowcase() {
               {/* Photo */}
               <div className="relative rounded-lg overflow-hidden shadow-2xl w-64 md:w-80 h-96 md:h-96">
                 <Image
-                  src="/inang-sarikat.jpg"
+                  src="/inang-sarikat(1).jpg"
                   alt="Inang Sarikat br. Purba Tambak"
                   fill
                   className="object-cover"
